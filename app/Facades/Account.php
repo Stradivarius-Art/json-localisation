@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Facade;
 class Account extends Facade
 {
     /**
-     * Undocumented function
+     *
      *
      * @method static \App\Models\User create(array $data)
      * @see \App\Services\Account\AccountService
