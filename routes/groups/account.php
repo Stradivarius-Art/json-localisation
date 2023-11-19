@@ -4,7 +4,7 @@ use App\Http\Controllers\Api\v1\AccountController;
 use Illuminate\Support\Facades\Route;
 
 Route::controller(AccountController::class)->prefix('v1/account')->group(function () {
-    Route::post('create', 'create');
-    // Route::post('sign-in', 'signIn');
+    Route::post('create', 'create')->name('account.create');
+    Route::post('sign-in', 'signIn')->name('account.sign-in');
     // Route::get('', 'account');
 });

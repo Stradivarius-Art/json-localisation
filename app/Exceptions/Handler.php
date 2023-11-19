@@ -2,6 +2,7 @@
 
 namespace App\Exceptions;
 
+use App\Exceptions\Account\InvalidDataException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
 
@@ -23,6 +24,13 @@ class Handler extends ExceptionHandler
      */
     public function register(): void
     {
+        $this->renderable(function (InvalidDataException $e) {
+            return response()->json([
+                'status' => 'failed',
+                'message' => $e->getMessage(),
+            ]);
+        });
+
         $this->reportable(function (Throwable $e) {
             //
         });
