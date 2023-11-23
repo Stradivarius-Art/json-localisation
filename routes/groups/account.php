@@ -6,5 +6,7 @@ use Illuminate\Support\Facades\Route;
 Route::controller(AccountController::class)->prefix('v1/account')->group(function () {
     Route::post('create', 'create')->name('account.create');
     Route::post('sign-in', 'signIn')->name('account.sign-in');
-    // Route::get('', 'account');
+    Route::get('/', 'show')
+        ->name('account.show')
+        ->middleware('auth:sanctum');
 });
