@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use App\Exceptions\Account\InvalidDataException;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
 
@@ -34,5 +35,14 @@ class Handler extends ExceptionHandler
         $this->reportable(function (Throwable $e) {
             //
         });
+    }
+
+    public function render($request, Throwable $e, )
+    {
+        if ($e instanceof ModelNotFoundException) {
+            return response()->json([
+                'message' => 'Project not found',
+            ], 404);
+        }
     }
 }

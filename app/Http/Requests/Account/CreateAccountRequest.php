@@ -2,8 +2,8 @@
 
 namespace App\Http\Requests\Account;
 
+use App\DTO\AccountDTO;
 use App\Enum\Account;
-use App\Facades\Account as FacadeAccount;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rules\Enum;
 
@@ -22,9 +22,9 @@ class CreateAccountRequest extends FormRequest
         ];
     }
 
-    public function createAccount()
+    public function createAccount(): AccountDTO
     {
-        FacadeAccount::create(
+        return AccountDTO::from(
             $this->validated()
         );
     }

@@ -2,21 +2,21 @@
 
 namespace App\Services\Account;
 
+use App\DTO\AccountDTO;
 use App\Exceptions\Account\InvalidDataException;
 use App\Models\User;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 
 class AccountService
 {
-    public function create(array $data)
+    public function create(AccountDTO $data)
     {
-        return User::query()->create([
-            'name' => Arr::get($data, 'name'),
-            'email' => Arr::get($data, 'email'),
-            'password' => Arr::get($data, 'password.value'),
-            'account_type' => Arr::get($data, 'accountType'),
-            'company_name' => Arr::get($data, 'companyName'),
+        return User::create([
+            'name' => $data->name,
+            'email' => $data->email,
+            'password' => $data->password_value,
+            'account_type' => $data->accountType,
+            'company_name' => $data->companyName,
         ]);
     }
 

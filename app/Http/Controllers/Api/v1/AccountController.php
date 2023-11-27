@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\v1;
 
+use App\Facades\Account;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Account\CreateAccountRequest;
 use App\Http\Requests\Account\SignInRequest;
@@ -12,7 +13,7 @@ class AccountController extends Controller
 {
     public function create(CreateAccountRequest $request)
     {
-        $request->createAccount();
+        Account::create($request->createAccount());
         return responseOk();
     }
 
