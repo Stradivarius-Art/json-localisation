@@ -18,5 +18,4 @@ class CreateProjectDTO extends Data
 
     #[MapInputName('settings.useMachineTranslate')]
     public bool $use_machine_translate;
-
 }

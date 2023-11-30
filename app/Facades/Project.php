@@ -8,8 +8,9 @@ use Illuminate\Support\Facades\Facade;
 class Project extends Facade
 {
     /**
-     * @method static App\Models\Project create(CreateProjectDTO $createProjectDTO)
-     * @see \App\Services\Project\Project
+     * @method static \App\Models\Project create(CreateProjectDTO $createProjectDTO)
+     * @method static \App\Services\Project\ProjectService setProject(\App\Models\Project $project)
+     * @see \App\Services\Project\ProjectService
      */
 
     protected static function getFacadeAccessor(): string
