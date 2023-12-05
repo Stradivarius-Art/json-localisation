@@ -12,6 +12,31 @@
 
 namespace App\Models{
 /**
+ * App\Models\Document
+ *
+ * @property int $id
+ * @property int $project_id
+ * @property string|null $name
+ * @property array|null $data
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Project $project
+ * @method static \Database\Factories\DocumentFactory factory($count = null, $state = [])
+ * @method static \Illuminate\Database\Eloquent\Builder|Document newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Document newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Document query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Document whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Document whereData($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Document whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Document whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Document whereProjectId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Document whereUpdatedAt($value)
+ */
+	class Document extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\Language
  *
  * @property int $id
@@ -60,6 +85,8 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Project whereUseMachineTranslate($value)
  * @mixin \Eloquent
  * @property int|null $user_id
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Document> $documents
+ * @property-read int|null $documents_count
  * @property-read \App\Models\User|null $user
  * @method static \Illuminate\Database\Eloquent\Builder|Project whereUserId($value)
  */

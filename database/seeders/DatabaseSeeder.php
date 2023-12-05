@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\Document;
 use App\Models\Language;
 use App\Models\Project;
 use App\Models\User;
@@ -18,6 +19,8 @@ class DatabaseSeeder extends Seeder
     {
         User::factory(3)->create();
         Language::factory(5)->create();
-        Project::factory(4)->create();
+        Project::factory(4)
+            ->has(Document::factory(3))
+            ->create();
     }
 }
