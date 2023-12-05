@@ -5,7 +5,7 @@ namespace App\DTO;
 use Spatie\LaravelData\Attributes\MapInputName;
 use Spatie\LaravelData\Data;
 
-class CreateProjectDTO extends Data
+class ProjectDTO extends Data
 {
     public string $name;
     public string $description;

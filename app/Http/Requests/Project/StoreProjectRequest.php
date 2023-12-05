@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests\Project;
 
-use App\DTO\CreateProjectDTO;
+use App\DTO\ProjectDTO;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreProjectRequest extends FormRequest
@@ -20,8 +20,8 @@ class StoreProjectRequest extends FormRequest
         ];
     }
 
-    public function data(): CreateProjectDTO
+    public function data(): ProjectDTO
     {
-        return CreateProjectDTO::from($this->validated());
+        return ProjectDTO::from($this->validated());
     }
 }

@@ -2,34 +2,33 @@
 
 namespace App\Services\Project;
 
-use App\DTO\CreateProjectDTO;
+use App\DTO\ProjectDTO;
 use App\Models\Project;
 
 class ProjectService
 {
     private Project $project;
 
-    public function create(CreateProjectDTO $createProjectDTO): Project
+    public function create(ProjectDTO $projectDTO): Project
     {
-
         $projects = Project::create([
-            'name' => $createProjectDTO->name,
-            'description' => $createProjectDTO->description,
-            'source_language_id' => $createProjectDTO->languages_source,
-            'target_languages_ids' => $createProjectDTO->languages_target,
-            'use_machine_translate' => $createProjectDTO->use_machine_translate,
+            'name' => $projectDTO->name,
+            'description' => $projectDTO->description,
+            'source_language_id' => $projectDTO->languages_source,
+            'target_languages_ids' => $projectDTO->languages_target,
+            'use_machine_translate' => $projectDTO->use_machine_translate,
             'user_id' => auth()->id(),
         ]);
 
         return $projects;
     }
 
-    public function update(CreateProjectDTO $createProjectDTO)
+    public function update(ProjectDTO $projectDTO)
     {
         $this->project->update([
-            'name' => $createProjectDTO->name,
-            'description' => $createProjectDTO->description,
-            'use_machine_translate' => $createProjectDTO->use_machine_translate,
+            'name' => $projectDTO->name,
+            'description' => $projectDTO->description,
+            'use_machine_translate' => $projectDTO->use_machine_translate,
         ]);
 
         return $this->project;
