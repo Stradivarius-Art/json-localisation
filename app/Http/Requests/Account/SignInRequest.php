@@ -19,7 +19,7 @@ class SignInRequest extends FormRequest
     {
         return Account::signIn(
             $this->input('email'),
-            $this->input('password')
+            $this->input('password'),
         );
     }
 }

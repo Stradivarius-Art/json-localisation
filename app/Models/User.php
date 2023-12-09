@@ -6,7 +6,6 @@ namespace App\Models;
 
 use App\Enum\Account;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -42,6 +41,8 @@ use Laravel\Sanctum\HasApiTokens;
  * @method static \Illuminate\Database\Eloquent\Builder|User wherePassword($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereRememberToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Project> $projects
+ * @property-read int|null $projects_count
  * @mixin \Eloquent
  */
 class User extends Authenticatable
@@ -81,9 +82,4 @@ class User extends Authenticatable
         'password' => 'hashed',
         'account_type' => Account::class,
     ];
-
-    public function projects(): HasMany
-    {
-        return $this->hasMany(Project::class);
-    }
 }

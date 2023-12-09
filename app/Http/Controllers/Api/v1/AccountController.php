@@ -17,10 +17,10 @@ class AccountController extends Controller
         return responseOk();
     }
 
-    public function signIn(SignInRequest $signInRequest)
+    public function signIn(SignInRequest $request)
     {
         return [
-            'token' => $signInRequest->signIn(),
+            'token' => $request->signIn(),
         ];
     }
 

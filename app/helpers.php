@@ -7,3 +7,15 @@ function responseOk(): JsonResponse
         'status' => 'success',
     ]);
 }
+
+function responseCreated(): JsonResponse
+{
+    return response()->json([
+        'status' => 'success',
+    ], 201);
+}
+
+function authUserId(): ?int
+{
+    return auth()->id();
+}

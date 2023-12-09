@@ -2,8 +2,10 @@
 
 namespace App\Exceptions;
 
-use App\Exceptions\Account\InvalidDataException;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
+// use App\Exceptions\Account\InvalidDataException;
+// use App\Exceptions\Account\NoAccessToOperationException;
+use App\Exceptions\Account\InvalidCredentialsException;
+use App\Exceptions\Account\NoAccessToOperationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
 
@@ -23,13 +25,21 @@ class Handler extends ExceptionHandler
     /**
      * Register the exception handling callbacks for the application.
      */
+
     public function register(): void
     {
-        $this->renderable(function (InvalidDataException $e) {
+        $this->renderable(function (InvalidCredentialsException $e) {
             return response()->json([
                 'status' => 'failed',
-                'message' => $e->getMessage(),
-            ]);
+                'message' => __("exception.{$e->getMessage()}"),
+            ], 401);
+        });
+
+        $this->renderable(function (NoAccessToOperationException $e) {
+            return response()->json([
+                'status' => 'failed',
+                'message' => __("exception.{$e->getMessage()}"),
+            ], 403);
         });
 
         $this->reportable(function (Throwable $e) {
@@ -37,12 +47,4 @@ class Handler extends ExceptionHandler
         });
     }
 
-    public function render($request, Throwable $e, )
-    {
-        if ($e instanceof ModelNotFoundException) {
-            return response()->json([
-                'message' => 'Project not found',
-            ], 404);
-        }
-    }
 }

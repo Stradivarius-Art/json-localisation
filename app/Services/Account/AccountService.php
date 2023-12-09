@@ -3,23 +3,27 @@
 namespace App\Services\Account;
 
 use App\DTO\AccountDTO;
-use App\Exceptions\Account\InvalidDataException;
+use App\Exceptions\Account\InvalidCredentialsException;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class AccountService
 {
-    public function create(AccountDTO $data)
+    public function create(AccountDTO $data): User
     {
-        return User::create([
+        $user = User::create([
             'name' => $data->name,
             'email' => $data->email,
             'password' => $data->password_value,
             'account_type' => $data->accountType,
             'company_name' => $data->companyName,
         ]);
+        return $user;
     }
 
+    /**
+     * @throws InvalidCredentialsException
+     */
     public function signIn(string $email, string $password): string
     {
         $user = User::query()
@@ -32,6 +36,6 @@ class AccountService
             }
         }
 
-        throw new InvalidDataException;
+        throw new InvalidCredentialsException();
     }
 }

@@ -17,7 +17,7 @@ class ProjectService
             'source_language_id' => $projectDTO->languages_source,
             'target_languages_ids' => $projectDTO->languages_target,
             'use_machine_translate' => $projectDTO->use_machine_translate,
-            'user_id' => auth()->id(),
+            'user_id' => authUserId(),
         ]);
 
         return $projects;

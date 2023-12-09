@@ -15,12 +15,12 @@ namespace App\Models{
  * App\Models\Document
  *
  * @property int $id
- * @property int $project_id
+ * @property int|null $project_id
  * @property string|null $name
  * @property array|null $data
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \App\Models\Project $project
+ * @property-read \App\Models\Project|null $project
  * @method static \Database\Factories\DocumentFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|Document newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Document newQuery()
@@ -65,12 +65,16 @@ namespace App\Models{
  * @property int $id
  * @property string|null $name
  * @property string|null $description
- * @property int $source_language_id
+ * @property int|null $source_language_id
+ * @property int|null $user_id
  * @property array|null $target_languages_ids
  * @property bool|null $use_machine_translate
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \App\Models\Language $source
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Document> $documents
+ * @property-read int|null $documents_count
+ * @property-read \App\Models\Language|null $source
+ * @property-read \App\Models\User|null $user
  * @method static \Database\Factories\ProjectFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|Project newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Project newQuery()
@@ -83,11 +87,6 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Project whereTargetLanguagesIds($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Project whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Project whereUseMachineTranslate($value)
- * @mixin \Eloquent
- * @property int|null $user_id
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Document> $documents
- * @property-read int|null $documents_count
- * @property-read \App\Models\User|null $user
  * @method static \Illuminate\Database\Eloquent\Builder|Project whereUserId($value)
  */
 	class Project extends \Eloquent {}
@@ -125,9 +124,9 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|User wherePassword($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereRememberToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
- * @mixin \Eloquent
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Project> $projects
  * @property-read int|null $projects_count
+ * @mixin \Eloquent
  */
 	class User extends \Eloquent {}
 }
