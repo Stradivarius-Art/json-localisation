@@ -9,6 +9,7 @@ class Document extends Facade
 {
     /**
      * @method static \App\Services\Document\DocumentService add(array $document)
+     * @method static \Illuminate\Database\Eloquent\Collection list()
      * @method static \App\Services\Document\DocumentService setProject(Project|int $project)
      * @see \App\Services\Document\DocumentService
      */

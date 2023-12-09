@@ -18,6 +18,7 @@ namespace App\Models{
  * @property int|null $project_id
  * @property string|null $name
  * @property array|null $data
+ * @property float|null $progress
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\Project|null $project
@@ -29,6 +30,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Document whereData($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Document whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Document whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Document whereProgress($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Document whereProjectId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Document whereUpdatedAt($value)
  */

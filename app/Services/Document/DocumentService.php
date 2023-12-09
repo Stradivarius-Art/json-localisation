@@ -3,6 +3,7 @@
 namespace App\Services\Document;
 
 use App\Models\Project;
+use Illuminate\Database\Eloquent\Collection;
 
 class DocumentService
 {
@@ -22,5 +23,10 @@ class DocumentService
         ? $project
         : Project::query()->findOrFail($project);
         return $this;
+    }
+
+    public function list(): Collection
+    {
+        return $this->project->documents()->get();
     }
 }
