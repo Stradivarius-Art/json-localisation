@@ -12,7 +12,6 @@ class DocumentController extends Controller
     {
         Document::setProject($request->input('projectId'))
             ->add($request->input('documents'));
-
         return responseCreated();
     }
 }
