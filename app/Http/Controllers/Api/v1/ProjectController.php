@@ -12,6 +12,11 @@ use App\Models\Project;
 
 class ProjectController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('project.access')->only(['update', 'destroy']);
+    }
+
     public function index()
     {
         return MinifiedProjectResource::collection(

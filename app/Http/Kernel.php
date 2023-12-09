@@ -3,6 +3,7 @@
 namespace App\Http;
 
 use App\Http\Middleware\Document\AddDocumentMiddleware;
+use App\Http\Middleware\Project\ProjectAccessMiddleware;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -66,5 +67,6 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'document.add.access' => AddDocumentMiddleware::class,
+        'project.access' => ProjectAccessMiddleware::class,
     ];
 }
