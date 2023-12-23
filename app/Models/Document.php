@@ -4,12 +4,35 @@ namespace App\Models;
 
 use App\Enum\Document as EnumDocument;
 use App\Models\Project;
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
+/**
+ * App\Models\Document
+ *
+ * @property int $id
+ * @property int|null $project_id
+ * @property string|null $name
+ * @property array|null $data
+ * @property float|null $progress
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read Project|null $project
+ * @method static \Database\Factories\DocumentFactory factory($count = null, $state = [])
+ * @method static \Illuminate\Database\Eloquent\Builder|Document newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Document newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Document query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Document whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Document whereData($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Document whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Document whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Document whereProgress($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Document whereProjectId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Document whereUpdatedAt($value)
+ * @mixin \Eloquent
+ */
 class Document extends Model
 {
     use HasFactory;
@@ -19,6 +42,7 @@ class Document extends Model
         'name',
         'data',
         'progress',
+        'created_at',
     ];
 
     protected $casts = [
@@ -42,5 +66,11 @@ class Document extends Model
         return EnumDocument::Completed;
     }
 
+    protected function created_at()
+    {
+        return Attribute::make(
+            get: fn($value) => date($value)
+        );
+    }
 
 }

@@ -14,4 +14,12 @@ Route::controller(DocumentController::class)->middleware('auth:sanctum')->prefix
     Route::delete('/{document}', 'destroy')
         ->name('documents.destroy')
         ->middleware('documents.access');
+
+    Route::post('/{document}/import', 'import')
+        ->name('documents.import')
+        ->middleware(['documents.access', 'project.lang']);
+
+    Route::get('/{document}', 'show')
+        ->name('documents.show')
+        ->middleware(['documents.access', 'project.lang']);
 });

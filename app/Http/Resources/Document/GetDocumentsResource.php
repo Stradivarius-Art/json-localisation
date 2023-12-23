@@ -2,7 +2,6 @@
 
 namespace App\Http\Resources\Document;
 
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -15,7 +14,7 @@ class GetDocumentsResource extends JsonResource
             "name" => $this->name,
             "status" => $this->status(),
             "progress" => $this->progress,
-            "createdAt" => Carbon::parse($this->created_at)->format('d-m-Y H:i'),
+            "createdAt" => date($this->created_at),
         ];
     }
 }

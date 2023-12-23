@@ -9,7 +9,7 @@ class AddDocumentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'projectId' => ['required', 'exists:projects,id'],
+            'projectId' => ['required', 'exists:projects,id', 'integer'],
             'documents' => ['required', 'array'],
             'documents.*.name' => ['required', 'string'],
             'documents.*.data' => ['required', 'array'],

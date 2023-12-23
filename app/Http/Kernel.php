@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\CheckProjectTargetLangMiddleware;
 use App\Http\Middleware\Document\AddDocumentMiddleware;
 use App\Http\Middleware\Document\DocumentAccessMiddleware;
 use App\Http\Middleware\Document\GetDocumentsMiddleware;
@@ -72,6 +73,6 @@ class Kernel extends HttpKernel
         'project.access' => ProjectAccessMiddleware::class,
         'documents.list' => GetDocumentsMiddleware::class,
         'documents.access' => DocumentAccessMiddleware::class,
-
+        'project.lang' => CheckProjectTargetLangMiddleware::class,
     ];
 }
