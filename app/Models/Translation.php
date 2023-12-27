@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Arr;
 
 /**
  * App\Models\Translation
@@ -51,5 +52,13 @@ class Translation extends Model
     public function language(): BelongsTo
     {
         return $this->belongsTo(Language::class);
+    }
+
+    public function translatedSegmentsCount(): int
+    {
+        $translatedSegments = Arr::where($this->data, function ($item) {
+            return !empty($item['value']) && is_string($item['value']);
+        });
+        return count($translatedSegments);
     }
 }

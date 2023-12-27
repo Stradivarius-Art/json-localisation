@@ -67,6 +67,18 @@ class DocumentService
             'data' => $translatedData,
         ]
         );
+
+        $this->updateProgressTranslation();
+    }
+
+    private function updateProgressTranslation()
+    {
+        $total = $this->document->totalSegments();
+        $translated = $this->document->translatedSegmentsCount();
+        $progress = ($translated / $total) * 100;
+        $this->document->update([
+            'progress' => $progress,
+        ]);
     }
 
     public function setDocument($document)

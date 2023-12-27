@@ -33,6 +33,8 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Document whereProgress($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Document whereProjectId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Document whereUpdatedAt($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Translation> $translations
+ * @property-read int|null $translations_count
  * @mixin \Eloquent
  */
 	class Document extends \Eloquent {}

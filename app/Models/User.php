@@ -43,6 +43,10 @@ use Laravel\Sanctum\HasApiTokens;
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Project> $projects
  * @property-read int|null $projects_count
+ * @property int|null $limit
+ * @property int|null $offset
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereLimit($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereOffset($value)
  * @mixin \Eloquent
  */
 class User extends Authenticatable
@@ -60,6 +64,8 @@ class User extends Authenticatable
         'password',
         'account_type',
         'company_name',
+        'limit',
+        'offset',
     ];
 
     /**

@@ -90,4 +90,9 @@ class Project extends Model
     {
         return in_array($langId, $this->target_languages_ids);
     }
+
+    public function languagesTarget(): int
+    {
+        return count($this->target_languages_ids);
+    }
 }

@@ -4,10 +4,11 @@ namespace App\Models;
 
 use App\Enum\Document as EnumDocument;
 use App\Models\Project;
-use Illuminate\Database\Eloquent\Casts\Attribute;
+use App\Models\Translation;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * App\Models\Document
@@ -31,6 +32,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @method static \Illuminate\Database\Eloquent\Builder|Document whereProgress($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Document whereProjectId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Document whereUpdatedAt($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Translation> $translations
+ * @property-read int|null $translations_count
  * @mixin \Eloquent
  */
 class Document extends Model
@@ -55,6 +58,11 @@ class Document extends Model
         return $this->belongsTo(Project::class);
     }
 
+    public function translations(): HasMany
+    {
+        return $this->hasMany(Translation::class);
+    }
+
     public function status(): EnumDocument
     {
         if ($this->progress === 0) {
@@ -66,11 +74,23 @@ class Document extends Model
         return EnumDocument::Completed;
     }
 
-    protected function created_at()
+    public function segmentsCount(): int
     {
-        return Attribute::make(
-            get: fn($value) => date($value)
-        );
+        return count($this->data);
     }
 
+    public function totalSegments(): int
+    {
+        return $this->segmentsCount() * $this->project->languagesTarget();
+    }
+
+    public function translatedSegmentsCount(): int
+    {
+        $translatedSegmentsCount = 0;
+
+        foreach ($this->translations as $translation) {
+            $translatedSegmentsCount += $translation->translatedSegmentsCount();
+        }
+        return $translatedSegmentsCount;
+    }
 }

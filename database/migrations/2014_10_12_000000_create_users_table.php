@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('account_type')->nullable()->default('freelancer');
             $table->string('company_name')->nullable();
+            $table->integer('limit')->nullable();
+            $table->integer('offset')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
