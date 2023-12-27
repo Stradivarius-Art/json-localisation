@@ -14,11 +14,4 @@ class UserRequest extends FormRequest
             'limit' => ['integer', 'required'],
         ];
     }
-
-    // public function createAccount(): AccountDTO
-    // {
-    //     return AccountDTO::from(
-    //         $this->validated()
-    //     );
-    // }
 }
