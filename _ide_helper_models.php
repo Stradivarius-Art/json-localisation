@@ -93,9 +93,36 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Project whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Project whereUseMachineTranslate($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Project whereUserId($value)
+ * @property-read Collection<int, \App\Models\Team> $teams
+ * @property-read int|null $teams_count
  * @mixin \Eloquent
  */
 	class Project extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Team
+ *
+ * @property-read \App\Models\Project $project
+ * @property-read \App\Models\User $user
+ * @method static \Illuminate\Database\Eloquent\Builder|Team newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Team newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Team query()
+ * @property-read \App\Models\User|null $performer
+ * @property int $id
+ * @property int|null $project_id
+ * @property int|null $performer_id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|Team whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Team whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Team wherePerformerId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Team whereProjectId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Team whereUpdatedAt($value)
+ * @mixin \Eloquent
+ */
+	class Team extends \Eloquent {}
 }
 
 namespace App\Models{
@@ -159,6 +186,12 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Project> $projects
  * @property-read int|null $projects_count
+ * @property int|null $limit
+ * @property int|null $offset
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereLimit($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereOffset($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Team> $teams
+ * @property-read int|null $teams_count
  * @mixin \Eloquent
  */
 	class User extends \Eloquent {}

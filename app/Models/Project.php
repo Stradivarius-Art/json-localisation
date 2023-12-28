@@ -39,6 +39,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @method static \Illuminate\Database\Eloquent\Builder|Project whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Project whereUseMachineTranslate($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Project whereUserId($value)
+ * @property-read Collection<int, \App\Models\Team> $teams
+ * @property-read int|null $teams_count
  * @mixin \Eloquent
  */
 class Project extends Model
@@ -94,5 +96,10 @@ class Project extends Model
     public function languagesTarget(): int
     {
         return count($this->target_languages_ids);
+    }
+
+    public function teams(): HasMany
+    {
+        return $this->hasMany(Team::class);
     }
 }
