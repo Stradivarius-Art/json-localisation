@@ -7,4 +7,5 @@ use Spatie\LaravelData\Data;
 class TeamDTO extends Data
 {
     public int $performerId;
+    public int $projectId;
 }

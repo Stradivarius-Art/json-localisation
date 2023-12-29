@@ -9,7 +9,6 @@ class Team extends Facade
 {
     /**
      * @method static \App\Services\Team\TeamService performerCreate(TeamDTO $teamDTO)
-     * @method  static \App\Services\Team\TeamService setProject(Project | int $project)
      * @see \App\Services\Team\TeamService
      */
 

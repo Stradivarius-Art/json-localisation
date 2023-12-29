@@ -3,22 +3,15 @@
 namespace App\Services\Team;
 
 use App\DTO\TeamDTO;
-use App\Models\Project;
+use App\Models\Team;
 
 class TeamService
 {
-    private Project $project;
     public function performerCreate(TeamDTO $teamDTO)
     {
-        $this->project->teams()->create([
+        Team::query()->create([
             'performer_id' => $teamDTO->performerId,
+            'project_id' => $teamDTO->projectId,
         ]);
-    }
-    public function setProject(Project | int $project)
-    {
-        $this->project = $project instanceof Project
-        ? $project
-        : Project::query()->findOrFail($project);
-        return $this;
     }
 }

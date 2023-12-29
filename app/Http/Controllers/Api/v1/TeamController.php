@@ -12,13 +12,13 @@ class TeamController extends Controller
 {
     public function performCreate(TeamRequest $request)
     {
-        Team::setProject($request->input('projectId'))
-            ->performerCreate($request->data());
+        Team::performerCreate($request->data());
         return responseCreated();
     }
 
     public function performShow()
     {
+
         return TeamResource::collection(
             Project::query()
                 ->where('user_id')

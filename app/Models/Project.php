@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Document;
+use App\Models\Team;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -102,4 +103,13 @@ class Project extends Model
     {
         return $this->hasMany(Team::class);
     }
+    public function performersCount()
+    {
+        $performerCounts = Team::query()
+            ->where('project_id', $this->id)
+            ->count('performer_id');
+        return $performerCounts;
+
+    }
+
 }

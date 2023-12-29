@@ -24,7 +24,7 @@ class MinifiedProjectResource extends JsonResource
                     $this->targetLanguages()
                 ),
             ],
-            "performersCount" => $this->performersCount,
+            "performersCount" => $this->performersCount(),
             "documentsCount" => $this->documentsCount,
             "useMachineTranslate" => $this->use_machine_translate,
             "createdAt" => date($this->created_at),
