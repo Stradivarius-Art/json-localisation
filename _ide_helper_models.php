@@ -36,6 +36,8 @@ namespace App\Models{
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Translation> $translations
  * @property-read int|null $translations_count
  * @mixin \Eloquent
+ * @property \App\Enum\Document|null $status
+ * @method static \Illuminate\Database\Eloquent\Builder|Document whereStatus($value)
  */
 	class Document extends \Eloquent {}
 }

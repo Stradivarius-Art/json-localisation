@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('name')->nullable();
             $table->json('data')->nullable();
             $table->float('progress')->nullable()->default(0);
+            $table->enum('status', ['created', 'in progress', 'completed'])
+                ->nullable();
             $table->timestamps();
         });
     }

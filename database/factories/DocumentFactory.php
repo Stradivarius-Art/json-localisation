@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Document;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,6 +17,7 @@ class DocumentFactory extends Factory
      */
     public function definition(): array
     {
+        $status = new Document();
         return [
             'name' => fake()->sentence(3),
             'data' => [
@@ -34,6 +36,7 @@ class DocumentFactory extends Factory
                     'value' => fake()->sentence(),
                 ],
             ],
+            'status' => $status->status(),
         ];
     }
 }

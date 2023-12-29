@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Project;
 
+use App\Http\Resources\Document\GetDocumentsResource;
 use App\Http\Resources\Language\LanguageResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -26,8 +27,8 @@ class ProjectCreateResource extends JsonResource
                     $this->targetLanguages()
                 ),
             ],
-            "documents" => [],
-            "performers" => [],
+            "documents" => GetDocumentsResource::collection($this->getDocuments()),
+            "performers" => $this->performers(),
             "settings" => [
                 "useMachineTranslate" => $this->use_machine_translate,
             ],

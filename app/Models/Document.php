@@ -45,12 +45,14 @@ class Document extends Model
         'name',
         'data',
         'progress',
+        'status',
         'created_at',
     ];
 
     protected $casts = [
         'data' => 'array',
         'progress' => 'float',
+        'status' => EnumDocument::class,
     ];
 
     public function project(): BelongsTo

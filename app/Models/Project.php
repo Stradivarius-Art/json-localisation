@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enum\Document as EnumDocument;
 use App\Models\Document;
 use App\Models\Team;
 use App\Models\User;
@@ -98,11 +99,6 @@ class Project extends Model
     {
         return count($this->target_languages_ids);
     }
-
-    public function teams(): HasMany
-    {
-        return $this->hasMany(Team::class);
-    }
     public function performersCount()
     {
         $performerCounts = Team::query()
@@ -118,6 +114,39 @@ class Project extends Model
             ->where('project_id', $this->id)
             ->count();
         return $documentsCount;
+    }
+
+    public function performers()
+    {
+        $performers = Team::query()
+            ->where('project_id', $this->id)
+            ->get();
+        return $performers;
+    }
+
+    public function status(): EnumDocument
+    {
+        if ($this->progress === 0) {
+            return EnumDocument::Created;
+        } elseif ($this->progress > 0 && $this->progress < 100) {
+            return EnumDocument::InProgress;
+        }
+
+        return EnumDocument::Completed;
+    }
+
+    public function getDocuments()
+    {
+        $documents = Document::query()
+            ->where('project_id', $this->id)
+            ->get([
+                'id',
+                'name',
+                'progress',
+                'status',
+                'created_at',
+            ]);
+        return $documents;
     }
 
 }
