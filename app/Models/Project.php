@@ -107,9 +107,17 @@ class Project extends Model
     {
         $performerCounts = Team::query()
             ->where('project_id', $this->id)
-            ->count('performer_id');
+            ->count();
         return $performerCounts;
 
+    }
+
+    public function documentsCount()
+    {
+        $documentsCount = Document::query()
+            ->where('project_id', $this->id)
+            ->count();
+        return $documentsCount;
     }
 
 }
