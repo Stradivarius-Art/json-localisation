@@ -14,7 +14,7 @@ class AccountService
         $user = User::create([
             'name' => $data->name,
             'email' => $data->email,
-            'password' => $data->password_value,
+            'password' => $data->password,
             'account_type' => $data->accountType,
             'company_name' => $data->companyName,
         ]);

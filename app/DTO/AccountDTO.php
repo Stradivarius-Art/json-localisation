@@ -12,6 +12,5 @@ class AccountDTO extends Data
     public string $email;
     public Account $accountType;
     public string $companyName;
-    #[MapInputName('password.value')]
-    public string $password_value;
+    public string $password;
 }
